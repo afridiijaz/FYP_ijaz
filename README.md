@@ -16,7 +16,6 @@ A comprehensive web-based telemedicine platform enabling patients to book consul
 - [API Endpoints](#api-endpoints)
 - [Security Features](#security-features)
 - [Deployment](#deployment)
-- [Database Schema](#database-schema)
 - [Testing](#testing)
 - [Contributing](#contributing)
 
@@ -224,7 +223,7 @@ This telemedicine platform revolutionizes healthcare delivery by connecting pati
 Framework:       Express.js 5.x
 Language:        Node.js (JavaScript)
 Database:        MongoDB 9.x
-ORM:            Mongoose 9.x
+ODM:            Mongoose 9.x
 Authentication: JWT (JSON Web Tokens)
 Real-time:      Socket.IO 4.x
 Security:       bcryptjs, CORS
@@ -254,7 +253,7 @@ Package Manager: npm
 Runtime:        Node.js 16+
 Database:       MongoDB Atlas (Cloud)
 Real-time DB:   Socket.IO Events
-Hosting:        (Heroku/AWS/Vercel)
+Hosting:        Vercel & Render
 SSL/TLS:        HTTPS
 ```
 
@@ -882,26 +881,28 @@ Authorization: Bearer <admin-token>
 
 ## 🚀 Deployment
 
-### Option 1: Heroku (Recommended for Quick Deployment)
-
-**Backend:**
-```bash
-# Install Heroku CLI
-# Login
-heroku login
-
-# Create app
-heroku create your-app-name
-
-# Set environment variables
-heroku config:set MONGODB_URI=mongodb+srv://...
-heroku config:set JWT_SECRET=your_secret
-
-# Deploy
-git push heroku main
-```
+### Live Deployment
 
 **Frontend (Vercel):**
+- 🌐 **Live URL**: [https://telemedicine-ruby.vercel.app/](https://telemedicine-ruby.vercel.app/)
+- Auto-deploys from GitHub on push to `main` branch
+- Serverless functions for API requests
+
+**Backend (Render):**
+- Deployed on Render for API hosting
+- MongoDB Atlas for database
+- Auto-scaling with SSL/TLS
+
+### Access Points
+
+| Environment | Frontend | Backend API |
+|-------------|----------|-------------|
+| **Development** | http://localhost:5173 | http://localhost:5000/api |
+| **Production** | https://telemedicine-ruby.vercel.app | https://api.yourdomain.com |
+
+### Deployment Steps
+
+**Frontend Deployment (Vercel):**
 ```bash
 # Install Vercel CLI
 npm install -g vercel
@@ -909,152 +910,19 @@ npm install -g vercel
 # Deploy
 cd Frontend
 vercel
-# Set VITE_API_URL to your backend URL
 ```
 
-### Option 2: AWS EC2
+**Backend Deployment (Render):**
+1. Push code to GitHub
+2. Connect repository to Render
+3. Set environment variables in Render dashboard
+4. Deploy automatically or manually
 
-**Backend:**
-```bash
-# SSH into EC2 instance
-ssh -i key.pem ec2-user@your-instance
+### Configuration
 
-# Install Node.js
-curl https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz | tar xJ
-export PATH=$PATH:/root/node-v18.0.0-linux-x64/bin
-
-# Clone repo
-git clone your-repo
-cd FYP/Backend
-
-# Install PM2 for process management
-npm install -g pm2
-
-# Start app
-pm2 start app.js --name "telemedicine-api"
-
-# View logs
-pm2 logs telemedicine-api
-```
-
-### Option 3: Docker Deployment
-
-**Dockerfile (Backend):**
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 5000
-CMD ["npm", "start"]
-```
-
-**Build & Run:**
-```bash
-docker build -t telemedicine-api .
-docker run -p 5000:5000 -e MONGODB_URI=... telemedicine-api
-```
-
-### Environment Variables for Production
-
-```env
-# Backend
-NODE_ENV=production
-PORT=5000
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/telemedicine
-JWT_SECRET=use_strong_random_string_here
-FRONTEND_URL=https://yourdomain.com
-SOCKET_PORT=5000
-
-# Frontend
-VITE_API_URL=https://api.yourdomain.com
-VITE_SOCKET_URL=https://api.yourdomain.com
-VITE_ENVIRONMENT=production
-```
-
----
-
-## 📊 Database Schema Overview
-
-### User Collection
-```javascript
-{
-  _id: ObjectId,
-  fullName: String,
-  email: String (unique),
-  username: String (unique),
-  password: String (hashed),
-  phone: String,
-  city: String,
-  role: String ["patient", "doctor", "admin"],
-  verificationStatus: String ["pending", "verified", "rejected"],
-  
-  // Patient-specific
-  age: Number,
-  gender: String,
-  medicalHistory: String,
-  
-  // Doctor-specific
-  specialty: String,
-  qualifications: String,
-  yearsOfExperience: Number,
-  availability: String,
-  chargesPerSession: Number,
-  
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### LoginLog Collection
-```javascript
-{
-  _id: ObjectId,
-  userId: ObjectId (ref: User),
-  username: String,
-  email: String,
-  userRole: String,
-  loginTime: Date,
-  logoutTime: Date,
-  sessionDuration: Number,
-  ipAddress: String,
-  userAgent: String,
-  location: {
-    country: String,
-    city: String,
-    region: String,
-    latitude: Number,
-    longitude: Number,
-    isp: String
-  },
-  deviceInfo: {
-    deviceType: String,
-    browser: String,
-    operatingSystem: String
-  },
-  loginStatus: String ["success", "failed", "suspicious"],
-  failureReason: String,
-  isRiskySuspicious: Boolean,
-  riskFactors: [String],
-  createdAt: Date
-}
-```
-
-### Appointment Collection
-```javascript
-{
-  _id: ObjectId,
-  patientId: ObjectId (ref: User),
-  doctorId: ObjectId (ref: User),
-  appointmentDate: Date,
-  appointmentTime: String,
-  reason: String,
-  status: String ["scheduled", "completed", "cancelled"],
-  createdAt: Date,
-  updatedAt: Date
-}
-```
+- Environment variables are managed securely in deployment platform dashboards
+- No sensitive credentials stored in repository
+- Separate configs for development and production environments
 
 ---
 
@@ -1110,8 +978,8 @@ db.loginlogs.find({ loginStatus: "success" })
 ## 📞 Support & Contact
 
 - **Issues**: Create an issue on GitHub
-- **Email**: your-email@example.com
-- **Documentation**: Check `/docs` folder
+- **Email**: afridiijaz520@gmail.com
+- **Live Demo**: [https://telemedicine-ruby.vercel.app/](https://telemedicine-ruby.vercel.app/)
 
 ---
 
