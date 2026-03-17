@@ -898,7 +898,7 @@ Authorization: Bearer <admin-token>
 | Environment | Frontend | Backend API |
 |-------------|----------|-------------|
 | **Development** | http://localhost:5173 | http://localhost:5000/api |
-| **Production** | https://telemedicine-ruby.vercel.app | https://api.yourdomain.com |
+| **Production** | https://telemedicine-ruby.vercel.app | https://fyp-ijaz.onrender.com |
 
 ### Deployment Steps
 
