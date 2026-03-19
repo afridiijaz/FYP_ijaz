@@ -1,4 +1,6 @@
 const dotenv = require("dotenv");
+dotenv.config({ override: true });
+
 const express = require("express");
 const mongoose = require("mongoose");
 const http = require("http");
@@ -6,7 +8,7 @@ const { Server } = require("socket.io");
 const connectDb = require("./config/dbconfig");
 const Patient = require("./models/Patient");
 const cors = require("cors");
-dotenv.config();
+
 const PORT = process.env.PORT || 5000 ;
 const app = express();
 const server = http.createServer(app);

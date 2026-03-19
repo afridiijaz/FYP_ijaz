@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
-
 
 const connectDb = async ()=>{
     try {
+        console.log("ENV MONGOURI:", process.env.MONGOURI);
         await mongoose.connect(process.env.MONGOURI);
         console.log("db connected successfully!")
     } catch (err) {

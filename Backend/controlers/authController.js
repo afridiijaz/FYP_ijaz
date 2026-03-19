@@ -3,9 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const LoginLog = require('../models/LoginLog');
 const axios = require('axios');
-const dotenv = require('dotenv');
 const UAParser = require('ua-parser-js');
-dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || 'change_this_secret';
 
