@@ -4,9 +4,6 @@
   "installCommand": "npm ci",
   "framework": "vite",
   "outputDirectory": "dist",
-  "env": {
-    "VITE_SOCKET_URL": "@vite_socket_url"
-  },
   "rewrites": [
     {
       "source": "/(.*)",
