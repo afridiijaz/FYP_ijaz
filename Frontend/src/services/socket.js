@@ -1,6 +1,8 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL =  'https://fyp-ijaz.onrender.com';
+
+console.log('Connecting to Socket.IO at:', SOCKET_URL);
 
 let socket = null;
 let registeredUserId = null;
