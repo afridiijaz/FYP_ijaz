@@ -1,8 +1,10 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL =  'https://fyp-ijaz.onrender.com';
+// Read Socket URL from .env file - dynamic based on environment
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+const NODE_ENV = import.meta.env.MODE || 'development';
 
-console.log('Connecting to Socket.IO at:', SOCKET_URL);
+
 
 let socket = null;
 let registeredUserId = null;
