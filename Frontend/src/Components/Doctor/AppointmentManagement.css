@@ -1,0 +1,302 @@
+/* Appointment Management Component Styles */
+
+.appointment-container {
+  margin-top: 10px;
+  width: 100%;
+  padding: 0 clamp(8px, 3vw, 16px);
+}
+
+.appointment-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.appointment-title {
+  margin: 0;
+  font-size: clamp(16px, 4vw, 20px);
+  color: #374151;
+  font-weight: 600;
+}
+
+.appointment-count-badge {
+  background-color: #16a34a;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 15px);
+}
+
+.appointment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(12px, 4vw, 20px);
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.appointment-card:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+  .appointment-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.appointment-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Patient Row */
+.appointment-patient-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.appointment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f46e5;
+  font-weight: bold;
+  font-size: 15px;
+  border: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.appointment-patient-name {
+  font-weight: 700;
+  color: #111827;
+  font-size: clamp(14px, 3vw, 15px);
+}
+
+.appointment-status-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.appointment-status-pending {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+.appointment-status-approved-badge {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.appointment-status-cancelled {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+.appointment-status-completed-badge {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* Info Rows */
+.appointment-date-time-row {
+  display: flex;
+  gap: clamp(10px, 3vw, 20px);
+  color: #6b7280;
+  font-size: clamp(12px, 3vw, 13px);
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.appointment-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.appointment-info-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.appointment-notes {
+  font-size: clamp(12px, 3vw, 13px);
+  color: #6b7280;
+  margin-top: 8px;
+  margin-bottom: 0;
+  word-break: break-word;
+}
+
+/* Action Buttons */
+.appointment-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .appointment-action-buttons {
+    flex-wrap: nowrap;
+  }
+}
+
+.appointment-approve-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #16a34a;
+  color: #fff;
+  border: none;
+  padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 20px);
+  height: 42px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: clamp(13px, 3vw, 14px);
+  transition: all 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.appointment-approve-btn:hover:not(:disabled) {
+  background-color: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(22, 163, 74, 0.2);
+}
+
+.appointment-approve-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.appointment-approve-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.appointment-cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 2px solid #fca5a5;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.appointment-cancel-btn:hover:not(:disabled) {
+  background-color: #fecaca;
+  border-color: #f87171;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.2);
+}
+
+.appointment-cancel-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.appointment-cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.appointment-status-text {
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.appointment-status-approved {
+  color: #16a34a;
+}
+
+.appointment-status-rejected {
+  color: #dc2626;
+}
+
+.appointment-status-completed {
+  color: #2563eb;
+}
+
+.appointment-loading {
+  text-align: center;
+  color: #6b7280;
+  padding: 30px 0;
+  font-size: clamp(14px, 3vw, 16px);
+}
+
+.appointment-empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 30px clamp(12px, 3vw, 24px);
+  font-size: clamp(14px, 3vw, 16px);
+}
+
+/* Responsive for very small screens */
+@media (max-width: 480px) {
+  .appointment-card {
+    padding: 12px;
+    gap: 14px;
+  }
+
+  .appointment-patient-row {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .appointment-date-time-row {
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .appointment-action-buttons {
+    width: 100%;
+  }
+
+  .appointment-approve-btn {
+    flex: 1;
+    height: 40px;
+  }
+
+  .appointment-cancel-btn {
+    height: 40px;
+  }
+}

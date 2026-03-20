@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDoctorProfile, updateDoctorProfile } from '../../services/doctorAction';
 import { useUser } from '../../context/UserContext';
 import { toast } from 'react-toastify';
+import './DoctorProfile.css';
 
 const DoctorProfile = () => {
   const { updateUserContext } = useUser();
@@ -104,40 +105,63 @@ const DoctorProfile = () => {
   };
 
   if (loading) {
-    return <div style={{ padding: '40px', textAlign: 'center', color: '#6b7280' }}>Loading profile...</div>;
+    return <div className="doctor-profile-loading">Loading profile...</div>;
   }
 
   return (
-    <div style={docStyles.card}>
-      <div style={docStyles.header}>
-        <h2 style={docStyles.title}>Professional Profile</h2>
-        <p style={docStyles.subtitle}>This information will be visible to patients looking for consultations.</p>
+    <div className="doctor-profile-card">
+      <div className="doctor-profile-header">
+        <h2 className="doctor-profile-title">Professional Profile</h2>
+        <p className="doctor-profile-subtitle">This information will be visible to patients looking for consultations.</p>
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div style={docStyles.grid}>
+        <div className="doctor-profile-grid">
           {/* Full Name */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Full Name</label>
-            <input type="text" name="fullName" value={profile.fullName} onChange={handleChange} style={docStyles.input} required placeholder="Dr. John Smith" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Full Name</label>
+            <input 
+              type="text" 
+              name="fullName" 
+              value={profile.fullName} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              required 
+              placeholder="Dr. John Smith" 
+            />
           </div>
 
           {/* Email (read-only) */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Email</label>
-            <input type="email" value={profile.email} disabled style={{ ...docStyles.input, backgroundColor: '#f3f4f6', cursor: 'not-allowed' }} />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Email</label>
+            <input 
+              type="email" 
+              value={profile.email} 
+              disabled 
+              className="doctor-profile-input" 
+            />
           </div>
 
           {/* Username (read-only) */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Username</label>
-            <input type="text" value={profile.username} disabled style={{ ...docStyles.input, backgroundColor: '#f3f4f6', cursor: 'not-allowed' }} />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Username</label>
+            <input 
+              type="text" 
+              value={profile.username} 
+              disabled 
+              className="doctor-profile-input" 
+            />
           </div>
 
           {/* Gender */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Gender</label>
-            <select name="gender" value={profile.gender} onChange={handleChange} style={docStyles.input}>
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Gender</label>
+            <select 
+              name="gender" 
+              value={profile.gender} 
+              onChange={handleChange} 
+              className="doctor-profile-select"
+            >
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -146,55 +170,101 @@ const DoctorProfile = () => {
           </div>
 
           {/* Phone */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Phone</label>
-            <input type="tel" name="phone" value={profile.phone} onChange={handleChange} style={docStyles.input} placeholder="e.g. +1234567890" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Phone</label>
+            <input 
+              type="tel" 
+              name="phone" 
+              value={profile.phone} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. +1234567890" 
+            />
           </div>
 
           {/* Specialty */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Specialty</label>
-            <input type="text" name="specialty" value={profile.specialty} onChange={handleChange} style={docStyles.input} placeholder="e.g. Cardiology" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Specialty</label>
+            <input 
+              type="text" 
+              name="specialty" 
+              value={profile.specialty} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. Cardiology" 
+            />
           </div>
 
           {/* Qualifications */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Qualifications</label>
-            <input type="text" name="qualifications" value={profile.qualifications} onChange={handleChange} style={docStyles.input} placeholder="e.g. MBBS, MD" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Qualifications</label>
+            <input 
+              type="text" 
+              name="qualifications" 
+              value={profile.qualifications} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. MBBS, MD" 
+            />
           </div>
 
           {/* Years of Experience */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Years of Experience</label>
-            <input type="number" name="yearsOfExperience" value={profile.yearsOfExperience} onChange={handleChange} style={docStyles.input} placeholder="e.g. 10" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Years of Experience</label>
+            <input 
+              type="number" 
+              name="yearsOfExperience" 
+              value={profile.yearsOfExperience} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. 10" 
+            />
           </div>
 
           {/* Availability */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Availability</label>
-            <input type="text" name="availability" value={profile.availability} onChange={handleChange} style={docStyles.input} placeholder="e.g. Mon-Fri 9:00-14:00" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Availability</label>
+            <input 
+              type="text" 
+              name="availability" 
+              value={profile.availability} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. Mon-Fri 9:00-14:00" 
+            />
           </div>
 
           {/* Charges Per Session */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>Charges Per Session ($)</label>
-            <input type="number" name="chargesPerSession" value={profile.chargesPerSession} onChange={handleChange} style={docStyles.input} placeholder="e.g. 2000" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">Charges Per Session ($)</label>
+            <input 
+              type="number" 
+              name="chargesPerSession" 
+              value={profile.chargesPerSession} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. 2000" 
+            />
           </div>
 
           {/* City */}
-          <div style={docStyles.field}>
-            <label style={docStyles.label}>City</label>
-            <input type="text" name="city" value={profile.city} onChange={handleChange} style={docStyles.input} placeholder="e.g. Lahore" />
+          <div className="doctor-profile-field">
+            <label className="doctor-profile-label">City</label>
+            <input 
+              type="text" 
+              name="city" 
+              value={profile.city} 
+              onChange={handleChange} 
+              className="doctor-profile-input" 
+              placeholder="e.g. Lahore" 
+            />
           </div>
         </div>
 
-        <div style={docStyles.buttonContainer}>
+        <div className="doctor-profile-button-container">
           <button
             type="submit"
-            style={{
-              ...docStyles.submitBtn,
-              ...((!hasChanges || saving) ? docStyles.disabledBtn : {}),
-            }}
+            className="doctor-profile-submit-btn"
             disabled={!hasChanges || saving}
           >
             {saving ? 'Updating...' : 'Update Profile'}
@@ -203,20 +273,6 @@ const DoctorProfile = () => {
       </form>
     </div>
   );
-};
-
-const docStyles = {
-  card: { padding: '10px' },
-  header: { marginBottom: '25px', borderBottom: '1px solid #eee', paddingBottom: '10px' },
-  title: { margin: 0, color: '#28a745', fontSize: '20px' },
-  subtitle: { margin: '5px 0 0', color: '#666', fontSize: '13px' },
-  grid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' },
-  field: { display: 'flex', flexDirection: 'column' },
-  label: { marginBottom: '5px', fontWeight: '600', fontSize: '14px', color: '#444' },
-  input: { padding: '10px', borderRadius: '5px', border: '1px solid #ddd', fontSize: '14px', outline: 'none' },
-  buttonContainer: { marginTop: '20px', display: 'flex', justifyContent: 'flex-end' },
-  submitBtn: { padding: '10px 24px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: '600', fontSize: '15px', transition: '0.2s' },
-  disabledBtn: { backgroundColor: '#a3d9b1', cursor: 'not-allowed', opacity: 0.7 },
 };
 
 export default DoctorProfile;
