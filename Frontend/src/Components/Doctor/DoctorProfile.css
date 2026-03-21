@@ -1,0 +1,164 @@
+/* Doctor Profile Component Styles */
+
+.doctor-profile-card {
+  padding: clamp(10px, 5vw, 20px);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.doctor-profile-header {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.doctor-profile-title {
+  margin: 0;
+  color: #28a745;
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 700;
+}
+
+.doctor-profile-subtitle {
+  margin: 5px 0 0;
+  color: #666;
+  font-size: clamp(12px, 4vw, 14px);
+}
+
+/* Grid Layout - Responsive */
+.doctor-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(12px, 3vw, 15px);
+}
+
+@media (max-width: 768px) {
+  .doctor-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Field */
+.doctor-profile-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Fix for text overflow */
+}
+
+.doctor-profile-label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+  color: #444;
+}
+
+/* Input and Select Styles */
+.doctor-profile-input,
+.doctor-profile-select {
+  padding: clamp(8px, 2vw, 10px);
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: clamp(13px, 3vw, 14px);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.doctor-profile-input:focus,
+.doctor-profile-select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.doctor-profile-input:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.doctor-profile-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Button Container */
+.doctor-profile-button-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .doctor-profile-button-container {
+    margin-top: 25px;
+  }
+}
+
+/* Submit Button */
+.doctor-profile-submit-btn {
+  padding: clamp(8px, 2vw, 10px) clamp(16px, 4vw, 24px);
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: clamp(13px, 3vw, 15px);
+  transition: background-color 0.2s, transform 0.1s;
+  width: 100%;
+  font-family: inherit;
+}
+
+@media (min-width: 640px) {
+  .doctor-profile-submit-btn {
+    width: auto;
+    min-width: 150px;
+  }
+}
+
+.doctor-profile-submit-btn:hover:not(:disabled) {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.doctor-profile-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.doctor-profile-submit-btn:disabled {
+  background-color: #a3d9b1;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Loading State */
+.doctor-profile-loading {
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .doctor-profile-card {
+    padding: 8px;
+  }
+
+  .doctor-profile-header {
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+  }
+
+  .doctor-profile-grid {
+    gap: 10px;
+  }
+
+  .doctor-profile-input,
+  .doctor-profile-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
