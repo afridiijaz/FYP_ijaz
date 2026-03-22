@@ -3,6 +3,7 @@ import {
   FileText, Upload, Search, Download, 
   Eye, Filter, MoreVertical, FilePlus 
 } from "lucide-react";
+import "./MedicalReports.css";
 
 const MedicalReports = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,73 +17,73 @@ const MedicalReports = () => {
   ];
 
   return (
-    <div style={styles.container}>
-      <div style={styles.header}>
-        <div style={styles.titleArea}>
-          <h2 style={styles.title}>Medical Reports Repository</h2>
-          <p style={styles.subtitle}>Manage and review patient diagnostic documents</p>
+    <div className="medical-reports-container">
+      <div className="medical-reports-header">
+        <div className="medical-reports-title-area">
+          <h2 className="medical-reports-title">Medical Reports Repository</h2>
+          <p className="medical-reports-subtitle">Manage and review patient diagnostic documents</p>
         </div>
-        <button style={styles.uploadBtn}>
+        <button className="medical-reports-upload-btn">
           <Upload size={18} /> Upload New Report
         </button>
       </div>
 
-      <div style={styles.toolbar}>
-        <div style={styles.searchWrapper}>
+      <div className="medical-reports-toolbar">
+        <div className="medical-reports-search-wrapper">
           <Search size={18} color="#9ca3af" />
           <input 
             type="text" 
             placeholder="Search by patient or report type..." 
-            style={styles.searchInput}
+            className="medical-reports-search-input"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <button style={styles.filterBtn}>
+        <button className="medical-reports-filter-btn">
           <Filter size={18} /> Filter
         </button>
       </div>
 
-      <div style={styles.tableCard}>
-        <table style={styles.table}>
+      <div className="medical-reports-table-card">
+        <table className="medical-reports-table">
           <thead>
-            <tr style={styles.tableHeadRow}>
-              <th style={styles.th}>Report Name / Type</th>
-              <th style={styles.th}>Patient Name</th>
-              <th style={styles.th}>Upload Date</th>
-              <th style={styles.th}>Status</th>
-              <th style={styles.th}>Actions</th>
+            <tr className="medical-reports-table-head-row">
+              <th className="medical-reports-th">Report Name / Type</th>
+              <th className="medical-reports-th">Patient Name</th>
+              <th className="medical-reports-th">Upload Date</th>
+              <th className="medical-reports-th">Status</th>
+              <th className="medical-reports-th">Actions</th>
             </tr>
           </thead>
           <tbody>
             {reports
               .filter(r => r.patient.toLowerCase().includes(searchTerm.toLowerCase()) || r.type.toLowerCase().includes(searchTerm.toLowerCase()))
               .map((report) => (
-                <tr key={report.id} style={styles.tableRow}>
-                  <td style={styles.td}>
-                    <div style={styles.fileNameCell}>
+                <tr key={report.id} className="medical-reports-table-row">
+                  <td className="medical-reports-td">
+                    <div className="medical-reports-file-name-cell">
                       <FileText size={20} color="#16a34a" />
-                      <div style={{ marginLeft: "10px" }}>
-                        <div style={styles.fileName}>{report.type}</div>
-                        <div style={styles.fileSub}>{report.file}</div>
+                      <div>
+                        <div className="medical-reports-file-name">{report.type}</div>
+                        <div className="medical-reports-file-sub">{report.file}</div>
                       </div>
                     </div>
                   </td>
-                  <td style={styles.td}>{report.patient}</td>
-                  <td style={styles.td}>{report.date}</td>
-                  <td style={styles.td}>
-                    <span style={{
-                      ...styles.statusBadge,
-                      backgroundColor: report.status === "Analyzed" ? "#f0fdf4" : "#fefce8",
-                      color: report.status === "Analyzed" ? "#16a34a" : "#a16207"
-                    }}>
+                  <td className="medical-reports-td">{report.patient}</td>
+                  <td className="medical-reports-td">{report.date}</td>
+                  <td className="medical-reports-td">
+                    <span className={`medical-reports-status-badge ${
+                      report.status === "Analyzed" ? "medical-reports-status-analyzed" : 
+                      report.status === "Pending Review" ? "medical-reports-status-pending" :
+                      "medical-reports-status-new"
+                    }`}>
                       {report.status}
                     </span>
                   </td>
-                  <td style={styles.td}>
-                    <div style={styles.actionGroup}>
-                      <button style={styles.iconBtn} title="View"><Eye size={18} /></button>
-                      <button style={styles.iconBtn} title="Download"><Download size={18} /></button>
-                      <button style={styles.iconBtn} title="More"><MoreVertical size={18} /></button>
+                  <td className="medical-reports-td">
+                    <div className="medical-reports-action-group">
+                      <button className="medical-reports-icon-btn" title="View"><Eye size={18} /></button>
+                      <button className="medical-reports-icon-btn" title="Download"><Download size={18} /></button>
+                      <button className="medical-reports-icon-btn" title="More"><MoreVertical size={18} /></button>
                     </div>
                   </td>
                 </tr>
@@ -90,32 +91,57 @@ const MedicalReports = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Mobile Card View */}
+      <div className="medical-reports-card-grid">
+        {reports
+          .filter(r => r.patient.toLowerCase().includes(searchTerm.toLowerCase()) || r.type.toLowerCase().includes(searchTerm.toLowerCase()))
+          .map((report) => (
+            <div key={report.id} className="medical-reports-card">
+              <div className="medical-reports-card-header">
+                <div className="medical-reports-card-icon">
+                  <FileText size={24} color="#fff" />
+                </div>
+                <div className="medical-reports-card-status">
+                  <span className={`medical-reports-status-badge ${
+                    report.status === "Analyzed" ? "medical-reports-status-analyzed" : 
+                    report.status === "Pending Review" ? "medical-reports-status-pending" :
+                    "medical-reports-status-new"
+                  }`}>
+                    {report.status}
+                  </span>
+                </div>
+              </div>
+
+              <div className="medical-reports-card-content">
+                <div className="medical-reports-card-type">{report.type}</div>
+                <div className="medical-reports-card-file">{report.file}</div>
+
+                <div className="medical-reports-card-meta">
+                  <div className="medical-reports-card-meta-item">
+                    <span className="medical-reports-card-meta-label">Patient</span>
+                    <span className="medical-reports-card-meta-value">{report.patient}</span>
+                  </div>
+                  <div className="medical-reports-card-meta-item">
+                    <span className="medical-reports-card-meta-label">Date</span>
+                    <span className="medical-reports-card-meta-value">{report.date}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="medical-reports-card-actions">
+                <button className="medical-reports-card-action-btn" title="View">
+                  <Eye size={16} /> View
+                </button>
+                <button className="medical-reports-card-action-btn" title="Download">
+                  <Download size={16} /> Download
+                </button>
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: { width: "100%" },
-  header: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "25px" },
-  title: { margin: 0, fontSize: "22px", color: "#111827", fontWeight: "700" },
-  subtitle: { margin: "5px 0 0 0", fontSize: "14px", color: "#6b7280" },
-  uploadBtn: { display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#16a34a", color: "#fff", border: "none", padding: "10px 20px", borderRadius: "8px", fontWeight: "600", cursor: "pointer" },
-  toolbar: { display: "flex", gap: "15px", marginBottom: "20px" },
-  searchWrapper: { flex: 1, display: "flex", alignItems: "center", gap: "10px", backgroundColor: "#fff", border: "1px solid #e5e7eb", padding: "0 15px", borderRadius: "8px", height: "45px" },
-  searchInput: { border: "none", outline: "none", width: "100%", fontSize: "14px" },
-  filterBtn: { display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#fff", border: "1px solid #e5e7eb", padding: "0 20px", borderRadius: "8px", color: "#374151", fontSize: "14px", cursor: "pointer" },
-  tableCard: { backgroundColor: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", overflow: "hidden" },
-  table: { width: "100%", borderCollapse: "collapse", textAlign: "left" },
-  tableHeadRow: { backgroundColor: "#f9fafb", borderBottom: "1px solid #e5e7eb" },
-  th: { padding: "15px 20px", fontSize: "13px", fontWeight: "600", color: "#4b5563" },
-  tableRow: { borderBottom: "1px solid #f3f4f6", transition: "0.2s" },
-  td: { padding: "15px 20px", fontSize: "14px", color: "#374151" },
-  fileNameCell: { display: "flex", alignItems: "center" },
-  fileName: { fontWeight: "600", color: "#111827" },
-  fileSub: { fontSize: "12px", color: "#9ca3af" },
-  statusBadge: { padding: "4px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: "600" },
-  actionGroup: { display: "flex", gap: "10px" },
-  iconBtn: { background: "none", border: "none", color: "#9ca3af", cursor: "pointer", padding: "5px", transition: "0.2s color" }
 };
 
 export default MedicalReports;

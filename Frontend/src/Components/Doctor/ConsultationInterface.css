@@ -1,0 +1,815 @@
+/* ═══════════════════════════════════════════════════════════════════ */
+/* CONSULTATION INTERFACE STYLES */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* LOADING CONTAINER */
+.consultation-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 20px;
+}
+
+.consultation-loading-container p {
+  margin-top: 10px;
+  color: #6b7280;
+}
+
+/* MAIN CALL VIEW */
+.consultation-container {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.consultation-video-section {
+  flex: 2;
+  min-width: 300px;
+  min-height: 100%;
+}
+
+.consultation-main-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: #111827;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.consultation-remote-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CALLING OVERLAY */
+.consultation-calling-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.consultation-pulse-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(22, 163, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}
+
+.consultation-calling-overlay p:first-of-type {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.consultation-calling-overlay p:last-of-type {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* LOCAL VIDEO WRAPPER */
+.consultation-local-video-wrapper {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 160px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  background-color: #374151;
+}
+
+.consultation-local-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.consultation-video-off-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.consultation-preview-label {
+  position: absolute;
+  bottom: 6px;
+  left: 8px;
+  font-size: 11px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* CALL INFO BAR */
+.consultation-call-info-bar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  z-index: 10;
+  font-size: 14px;
+  color: #fff;
+}
+
+.consultation-call-info-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0.5;
+  }
+}
+
+/* CONTROLS BAR - ALWAYS ONE ROW */
+.consultation-controls-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  background-color: rgba(17, 24, 39, 0.85);
+  padding: 12px 24px;
+  border-radius: 40px;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  flex-wrap: nowrap;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.consultation-control-btn {
+  border: none;
+  background-color: #4b5563;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.consultation-control-btn:hover {
+  background-color: #5a6672;
+}
+
+.consultation-control-btn-active {
+  border: none;
+  background-color: #ef4444;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.consultation-control-btn-active:hover {
+  background-color: #dc2626;
+}
+
+.consultation-end-call-btn {
+  border: none;
+  background-color: #dc2626;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.consultation-end-call-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* SIDE PANEL */
+.consultation-side-panel {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.consultation-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.consultation-panel-header h4 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.consultation-patient-brief {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+  line-height: 1.8;
+}
+
+.consultation-patient-brief p {
+  margin: 6px 0;
+}
+
+.consultation-note-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+  margin-top: 8px;
+}
+
+.consultation-notes-area {
+  flex: 1;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.consultation-notes-area:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.consultation-save-btn {
+  margin-top: 12px;
+  background-color: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.consultation-save-btn:hover:not(:disabled) {
+  background-color: #15803d;
+}
+
+.consultation-save-btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* LOBBY VIEW */
+.consultation-lobby-container {
+  padding: 10px;
+}
+
+.consultation-lobby-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.consultation-lobby-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.consultation-lobby-header h2 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 28px;
+}
+
+.consultation-lobby-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.consultation-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  text-align: center;
+}
+
+.consultation-empty-state h3 {
+  color: #6b7280;
+  margin-top: 15px;
+}
+
+.consultation-empty-state p {
+  color: #9ca3af;
+  max-width: 400px;
+  text-align: center;
+}
+
+.consultation-appointment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.consultation-appointment-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-appointment-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.consultation-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.consultation-patient-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #16a34a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.consultation-card-top h4 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.consultation-card-top p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.consultation-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.consultation-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.consultation-detail-row.approved span {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.consultation-start-call-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 0;
+  background-color: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+
+.consultation-start-call-btn:hover {
+  background-color: #15803d;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* RESPONSIVE DESIGN */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* TABLET (768px and below) */
+@media (max-width: 768px) {
+  .consultation-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .consultation-video-section {
+    flex: 1 1 100%;
+    min-width: 100%;
+    min-height: auto;
+  }
+
+  .consultation-main-video {
+    aspect-ratio: 9/10;
+  }
+
+  .consultation-local-video-wrapper {
+    top: 10px;
+    right: 10px;
+    width: 130px;
+    height: 90px;
+  }
+
+  .consultation-call-info-bar {
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .consultation-controls-bar {
+    bottom: 12px;
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .consultation-control-btn,
+  .consultation-control-btn-active,
+  .consultation-end-call-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .consultation-side-panel {
+    flex: 1 1 100%;
+    min-width: 100%;
+    padding: 12px;
+    max-height: auto;
+  }
+
+  .consultation-panel-header h4 {
+    font-size: 14px;
+  }
+
+  .consultation-patient-brief {
+    font-size: 12px;
+  }
+
+  .consultation-note-label {
+    font-size: 12px;
+  }
+
+  .consultation-notes-area {
+    min-height: 80px;
+    font-size: 13px;
+    max-height: 200px;
+  }
+
+  .consultation-save-btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .consultation-lobby-header {
+    margin-bottom: 20px;
+    padding: 0 8px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .consultation-lobby-header h2 {
+    font-size: 22px;
+  }
+
+  .consultation-lobby-header h2 {
+    font-size: 22px;
+  }
+
+  .consultation-appointment-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    padding: 0 8px;
+  }
+
+  .consultation-appointment-card {
+    padding: 14px;
+  }
+
+  .consultation-card-details {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .consultation-detail-row {
+    font-size: 12px;
+  }
+
+  .consultation-start-call-btn {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+
+  .consultation-pulse-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .consultation-preview-label {
+    font-size: 9px;
+  }
+}
+
+/* MOBILE (480px and below) */
+@media (max-width: 480px) {
+  .consultation-loading-container {
+    padding: 10px;
+  }
+
+  .consultation-container {
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .consultation-main-video {
+    aspect-ratio: 9/12;
+  }
+
+  .consultation-local-video-wrapper {
+    top: 8px;
+    right: 8px;
+    width: 100px;
+    height: 75px;
+  }
+
+  .consultation-call-info-bar {
+    top: 8px;
+    left: 8px;
+    padding: 3px 6px;
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .consultation-controls-bar {
+    bottom: 8px;
+    padding: 6px 8px;
+    gap: 8px;
+    border-radius: 30px;
+  }
+
+  .consultation-control-btn,
+  .consultation-control-btn-active,
+  .consultation-end-call-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .consultation-side-panel {
+    padding: 10px;
+  }
+
+  .consultation-panel-header {
+    margin-bottom: 12px;
+  }
+
+  .consultation-panel-header h4 {
+    font-size: 12px;
+  }
+
+  .consultation-patient-brief {
+    font-size: 11px;
+    padding: 8px;
+    margin-bottom: 12px;
+  }
+
+  .consultation-note-label {
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  .consultation-notes-area {
+    min-height: 70px;
+    font-size: 12px;
+    max-height: 180px;
+  }
+
+  .consultation-save-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .consultation-lobby-container {
+    padding: 8px;
+  }
+
+  .consultation-lobby-header {
+    margin-bottom: 15px;
+    gap: 10px;
+    padding: 0 4px;
+    align-items: flex-start;
+  }
+
+  .consultation-lobby-header h2 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .consultation-lobby-header p {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .consultation-appointment-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 4px;
+  }
+
+  .consultation-appointment-card {
+    padding: 12px;
+  }
+
+  .consultation-card-top {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .consultation-patient-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .consultation-card-top h4 {
+    font-size: 14px;
+  }
+
+  .consultation-card-top p {
+    font-size: 11px;
+  }
+
+  .consultation-card-details {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .consultation-detail-row {
+    font-size: 11px;
+  }
+
+  .consultation-start-call-btn {
+    padding: 8px 0;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .consultation-empty-state {
+    min-height: 250px;
+  }
+
+  .consultation-pulse-circle {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* SMALL DEVICES (360px and below) */
+@media (max-width: 360px) {
+  .consultation-main-video {
+    aspect-ratio: 9/14;
+  }
+
+  .consultation-local-video-wrapper {
+    width: 85px;
+    height: 65px;
+  }
+
+  .consultation-controls-bar {
+    padding: 4px 6px;
+    gap: 6px;
+  }
+
+  .consultation-control-btn,
+  .consultation-control-btn-active,
+  .consultation-end-call-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .consultation-lobby-header h2 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .consultation-lobby-header {
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .consultation-lobby-header p {
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .consultation-appointment-card {
+    padding: 10px;
+  }
+
+  .consultation-patient-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+}

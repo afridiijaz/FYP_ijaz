@@ -1,0 +1,654 @@
+/* ═══════════════════════════════════════════════════════════════════ */
+/* MEDICAL REPORTS STYLES */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+/* CONTAINER */
+.medical-reports-container {
+  width: 100%;
+  padding: 0;
+}
+
+/* HEADER SECTION */
+.medical-reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.medical-reports-title-area {
+  flex: 1;
+}
+
+.medical-reports-title {
+  margin: 0;
+  font-size: 24px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.medical-reports-subtitle {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.medical-reports-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.medical-reports-upload-btn:hover {
+  background-color: #15803d;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.25);
+}
+
+/* TOOLBAR */
+.medical-reports-toolbar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.medical-reports-search-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 0 15px;
+  border-radius: 8px;
+  height: 45px;
+  transition: all 0.2s;
+}
+
+.medical-reports-search-wrapper:focus-within {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.medical-reports-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+  font-family: inherit;
+}
+
+.medical-reports-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.medical-reports-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.medical-reports-filter-btn:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+/* TABLE CARD */
+.medical-reports-table-card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* TABLE */
+.medical-reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.medical-reports-table-head-row {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.medical-reports-th {
+  padding: 15px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.medical-reports-table-row {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s;
+}
+
+.medical-reports-table-row:hover {
+  background-color: #fafbf8;
+}
+
+.medical-reports-td {
+  padding: 15px 20px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* FILE NAME CELL */
+.medical-reports-file-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.medical-reports-file-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.medical-reports-file-sub {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* STATUS BADGE */
+.medical-reports-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.medical-reports-status-analyzed {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.medical-reports-status-pending {
+  background-color: #fefce8;
+  color: #a16207;
+}
+
+.medical-reports-status-new {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* ACTION GROUP */
+.medical-reports-action-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.medical-reports-icon-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medical-reports-icon-btn:hover {
+  color: #16a34a;
+  background-color: #f0fdf4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* TABLET BREAKPOINT (768px) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .medical-reports-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .medical-reports-title {
+    font-size: 20px;
+  }
+
+  .medical-reports-subtitle {
+    font-size: 13px;
+  }
+
+  .medical-reports-upload-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .medical-reports-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .medical-reports-search-wrapper {
+    height: 42px;
+  }
+
+  .medical-reports-filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .medical-reports-th {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  .medical-reports-td {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .medical-reports-file-name {
+    font-size: 13px;
+  }
+
+  .medical-reports-file-sub {
+    font-size: 11px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* MOBILE BREAKPOINT (480px) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .medical-reports-container {
+    padding: 0;
+  }
+
+  .medical-reports-header {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .medical-reports-title {
+    font-size: 18px;
+  }
+
+  .medical-reports-subtitle {
+    font-size: 12px;
+  }
+
+  .medical-reports-upload-btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .medical-reports-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .medical-reports-search-wrapper {
+    height: 40px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .medical-reports-search-input {
+    font-size: 13px;
+  }
+
+  .medical-reports-filter-btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* MOBILE TABLE - HIDE */
+  .medical-reports-table-card {
+    display: none;
+  }
+
+  .medical-reports-card-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  /* CARD STYLES */
+  .medical-reports-card {
+    border-radius: 10px;
+  }
+
+  .medical-reports-card-header {
+    padding: 14px;
+  }
+
+  .medical-reports-card-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .medical-reports-card-content {
+    padding: 14px;
+  }
+
+  .medical-reports-card-type {
+    font-size: 15px;
+  }
+
+  .medical-reports-card-file {
+    font-size: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .medical-reports-card-meta-label {
+    font-size: 10px;
+  }
+
+  .medical-reports-card-meta-value {
+    font-size: 12px;
+  }
+
+  .medical-reports-card-actions {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .medical-reports-card-action-btn {
+    padding: 9px 10px;
+    font-size: 12px;
+    gap: 5px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* SMALL DEVICE BREAKPOINT (360px) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 360px) {
+  .medical-reports-title {
+    font-size: 16px;
+  }
+
+  .medical-reports-subtitle {
+    font-size: 11px;
+  }
+
+  .medical-reports-upload-btn {
+    padding: 9px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .medical-reports-th {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .medical-reports-td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .medical-reports-file-name {
+    font-size: 11px;
+  }
+
+  .medical-reports-file-sub {
+    font-size: 9px;
+  }
+
+  .medical-reports-status-badge {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  .medical-reports-table {
+    min-width: 380px;
+  }
+
+  /* CARD STYLES FOR SMALL DEVICES */
+  .medical-reports-card {
+    border-radius: 8px;
+  }
+
+  .medical-reports-card-header {
+    padding: 12px;
+  }
+
+  .medical-reports-card-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .medical-reports-card-content {
+    padding: 12px;
+  }
+
+  .medical-reports-card-type {
+    font-size: 14px;
+  }
+
+  .medical-reports-card-file {
+    font-size: 11px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .medical-reports-card-meta {
+    gap: 8px;
+  }
+
+  .medical-reports-card-meta-label {
+    font-size: 9px;
+  }
+
+  .medical-reports-card-meta-value {
+    font-size: 11px;
+  }
+
+  .medical-reports-card-actions {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+
+  .medical-reports-card-action-btn {
+    padding: 8px 8px;
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .medical-reports-card-action-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* CARD LAYOUT */
+/* ═══════════════════════════════════════════════════════════════════ */
+
+.medical-reports-card-grid {
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.medical-reports-card {
+  background: linear-gradient(135deg, #fff 0%, #fafbf8 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.medical-reports-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: #16a34a;
+}
+
+.medical-reports-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-bottom: 1px solid #bbf7d0;
+}
+
+.medical-reports-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.medical-reports-card-status {
+  display: flex;
+  gap: 6px;
+}
+
+.medical-reports-card-content {
+  flex: 1;
+  padding: 16px;
+}
+
+.medical-reports-card-type {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.medical-reports-card-file {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.medical-reports-card-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.medical-reports-card-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.medical-reports-card-meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.medical-reports-card-meta-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.medical-reports-card-actions {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.medical-reports-card-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.medical-reports-card-action-btn:hover {
+  background-color: #f0fdf4;
+  border-color: #16a34a;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* MOBILE: SHOW CARDS, HIDE TABLE */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .medical-reports-table-card {
+    display: none;
+  }
+
+  .medical-reports-card-grid {
+    display: grid;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* TABLET: SHOW BOTH (can adjust if needed) */
+/* ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) and (min-width: 481px) {
+  .medical-reports-table-card {
+    display: block;
+  }
+
+  .medical-reports-card-grid {
+    display: none;
+  }
+}
