@@ -66,18 +66,10 @@ const AdminDashboard = () => {
           <div style={s.brandIcon}><Heart size={20} color="#fff" fill="#fff" /></div>
           <div>
             <span style={s.brandName}>Telemedicine</span>
-            <div style={s.brandSub}>Admin Panel</div>
           </div>
         </div>
 
-        {/* Admin card */}
-        <div style={s.userCard}>
-          <div style={s.userAvatar}><ShieldCheck size={20} color="#fff" /></div>
-          <div>
-            <div style={s.userFullName}>{adminName}</div>
-            <div style={s.userRole}>System Admin</div>
-          </div>
-        </div>
+  
 
         <nav style={s.nav}>
           <div style={s.navLabel}>MANAGEMENT</div>
@@ -122,9 +114,6 @@ const AdminDashboard = () => {
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <div style={!isMobile ? s.roleChip : { display: "none" }}>
-              <ShieldCheck size={14} /> Admin
-            </div>
             <ProfileDropdown 
               userName={adminName} 
               userRole="Admin"

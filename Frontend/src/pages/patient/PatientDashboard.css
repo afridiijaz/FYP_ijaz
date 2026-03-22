@@ -168,6 +168,14 @@
   margin-left: 272px;
 }
 
+.pd-main.sidebar-closed {
+  margin-left: 0;
+}
+
+.pd-main.collapsed {
+  margin-left: 0;
+}
+
 .pd-header {
   height: 72px;
   background-color: #fff;
@@ -318,8 +326,7 @@
   }
 
   .pd-menu-btn {
-    width: 44px;
-    height: 44px;
+    padding: 6px;
   }
 
   .pd-greeting {
@@ -431,8 +438,7 @@
   }
 
   .pd-menu-btn {
-    width: 36px;
-    height: 36px;
+    padding: 4px;
   }
 
   .pd-greeting {

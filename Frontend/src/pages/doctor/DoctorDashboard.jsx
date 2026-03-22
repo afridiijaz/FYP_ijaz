@@ -7,6 +7,7 @@ import {
 import { clearSession } from "../../services/auth";
 import { useUser } from "../../context/UserContext";
 import { getUnreadCount } from "../../services/doctorAction";
+import "./DoctorDashboard.css";
 
 import DoctorProfile from "../../Components/Doctor/DoctorProfile";
 import AppointmentManagement from "../../Components/Doctor/AppointmentManagement";
@@ -27,7 +28,6 @@ const DoctorDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
-  const [hovered, setHovered] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,19 +45,26 @@ const DoctorDashboard = () => {
     try {
       const data = await getUnreadCount();
       setUnreadNotifications(data.count);
-    } catch {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    refreshUnreadCount();
+    const timer = setTimeout(() => {
+      refreshUnreadCount();
+    }, 0);
     const interval = setInterval(refreshUnreadCount, 30000);
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleLogout = () => {
     clearSession();
     logoutUser();
-    navigate("/login");
+    navigate("/");
   };
 
   const handleProfileClick = () => {
@@ -78,46 +85,26 @@ const DoctorDashboard = () => {
   const greeting = greetHour < 12 ? "Good Morning" : greetHour < 17 ? "Good Afternoon" : "Good Evening";
 
   return (
-    <div style={s.page}>
-      {isMobile && sidebarOpen && <div style={s.overlay} onClick={() => setSidebarOpen(false)} />}
+    <div className="doctor-dashboard-page">
+      {isMobile && sidebarOpen && <div className="doctor-dashboard-overlay" onClick={() => setSidebarOpen(false)} />}
 
       {/* ═══ SIDEBAR ═══ */}
-      <aside style={{ ...s.sidebar, left: sidebarOpen ? 0 : "-280px", width: isMobile ? "260px" : "272px" }}>
-        <div style={s.brand}>
-          <div style={s.brandIcon}><Heart size={20} color="#fff" fill="#fff" /></div>
-          <span style={s.brandName}>Telemedicine</span>
+      <aside className={`doctor-dashboard-sidebar ${sidebarOpen ? "visible" : "hidden"}`} style={{ width: isMobile ? "260px" : "272px" }}>
+        <div className="doctor-dashboard-brand">
+          <div className="doctor-dashboard-brand-icon"><Heart size={20} color="#fff" fill="#fff" /></div>
+          <span className="doctor-dashboard-brand-name">Telemedicine</span>
         </div>
-
-        {/* Doctor card */}
-        <div style={s.userCard}>
-          <div style={s.userAvatar}>
-            <Stethoscope size={20} color="#fff" />
-          </div>
-          <div>
-            <div style={s.userFullName}>Dr. {drName.split(/[0-9]/)[0]}</div>
-            <div style={s.userRole}>Doctor</div>
-          </div>
-        </div>
-
-        <nav style={s.nav}>
-          <div style={s.navLabel}>MENU</div>
+        <nav className="doctor-dashboard-nav">
+          <div className="doctor-dashboard-nav-label">MENU</div>
           {menuItems.map((item) => {
             const active = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => { setActiveTab(item.id); if (isMobile) setSidebarOpen(false); }}
-                onMouseEnter={() => setHovered(item.id)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  ...s.navItem,
-                  backgroundColor: active ? "#f0fdf4" : hovered === item.id ? "#f9fafb" : "transparent",
-                  color: active ? "#16a34a" : "#4b5563",
-                  borderLeft: active ? "3px solid #16a34a" : "3px solid transparent",
-                  fontWeight: active ? "600" : "500",
-                }}
+                className={`doctor-dashboard-nav-item ${active ? "active" : ""}`}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div className="doctor-dashboard-nav-item-content">
                   {item.icon}
                   <span>{item.label}</span>
                 </div>
@@ -129,27 +116,27 @@ const DoctorDashboard = () => {
       </aside>
 
       {/* ═══ MAIN ═══ */}
-      <div style={{ ...s.main, marginLeft: isMobile ? 0 : sidebarOpen ? "272px" : 0 }}>
-        <header style={s.header}>
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <button style={s.menuBtn} onClick={() => setSidebarOpen(!sidebarOpen)}>
+      <div className={`doctor-dashboard-main ${isMobile ? "no-sidebar" : ""} ${!sidebarOpen ? "collapsed" : ""}`}>
+        <header className="doctor-dashboard-header">
+          <div className="doctor-dashboard-header-left">
+            <button className="doctor-dashboard-menu-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
               {sidebarOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
             <div>
-              <div style={s.greet}>{greeting} 👋</div>
-              <div style={s.greetName}>Dr. {drName.split(/[0-9]/)[0]}</div>
+              <p className="doctor-dashboard-greeting">{greeting} 👋</p>
+              <p className="doctor-dashboard-greeting-name">Dr. {drName.split(/[0-9]/)[0]}</p>
             </div>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <div className="doctor-dashboard-header-right">
             {/* Notification bell */}
             <button
-              style={s.notifBtn}
+              className="doctor-dashboard-notif-btn"
               onClick={() => setActiveTab("Notifications")}
               title="Notifications"
             >
               <Bell size={21} color="#4b5563" />
-              {unreadNotifications > 0 && <span style={s.badge}>{unreadNotifications}</span>}
+              {unreadNotifications > 0 && <span className="doctor-dashboard-badge">{unreadNotifications}</span>}
             </button>
             <ProfileDropdown 
               userName={`Dr. ${drName.split(/[0-9]/)[0]}`} 
@@ -161,8 +148,8 @@ const DoctorDashboard = () => {
           </div>
         </header>
 
-        <main style={{ padding: isMobile ? "16px" : "28px" }}>
-          <div style={s.contentCard}>
+        <main className="doctor-dashboard-content-area">
+          <div className="doctor-dashboard-content-card">
             {activeTab === "Profile" && <DoctorProfile />}
             {activeTab === "Appointments" && <AppointmentManagement />}
             {activeTab === "Patients" && <PatientHistory />}
@@ -180,80 +167,6 @@ const DoctorDashboard = () => {
       </div>
     </div>
   );
-};
-
-const s = {
-  page: { display: "flex", minHeight: "100vh", backgroundColor: "#f0f2f5", fontFamily: "'Inter','Segoe UI',system-ui,sans-serif" },
-  overlay: { position: "fixed", inset: 0, backgroundColor: "rgba(0,0,0,0.4)", zIndex: 99 },
-
-  sidebar: {
-    position: "fixed", height: "100vh", backgroundColor: "#fff",
-    boxShadow: "2px 0 16px rgba(0,0,0,0.04)", display: "flex", flexDirection: "column",
-    zIndex: 100, transition: "left 0.3s cubic-bezier(.4,0,.2,1)", borderRight: "1px solid #f0f0f0",
-  },
-  brand: { display: "flex", alignItems: "center", gap: "10px", padding: "22px 22px 18px" },
-  brandIcon: {
-    width: "36px", height: "36px", borderRadius: "10px",
-    background: "linear-gradient(135deg, #16a34a, #15803d)",
-    display: "flex", alignItems: "center", justifyContent: "center",
-  },
-  brandName: { fontWeight: "800", fontSize: "20px", color: "#111827", letterSpacing: "-0.5px" },
-
-  userCard: {
-    display: "flex", alignItems: "center", gap: "12px",
-    margin: "0 16px 16px", padding: "14px",
-    borderRadius: "14px", backgroundColor: "#f0fdf4", border: "1px solid #dcfce7",
-  },
-  userAvatar: {
-    width: "40px", height: "40px", borderRadius: "50%",
-    background: "linear-gradient(135deg, #0d9488, #0f766e)", color: "#fff",
-    display: "flex", alignItems: "center", justifyContent: "center",
-    fontWeight: "700", fontSize: "16px", flexShrink: 0,
-  },
-  userFullName: { fontWeight: "600", fontSize: "14px", color: "#111827" },
-  userRole: { fontSize: "11px", color: "#0d9488", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.3px" },
-
-  nav: { flex: 1, padding: "4px 12px", overflowY: "auto" },
-  navLabel: { fontSize: "10px", fontWeight: "700", color: "#9ca3af", letterSpacing: "1px", padding: "8px 10px 6px", marginTop: "4px" },
-  navItem: {
-    display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%",
-    padding: "11px 14px", border: "none", borderRadius: "10px", cursor: "pointer",
-    fontSize: "13.5px", transition: "all 0.15s", textAlign: "left", marginBottom: "2px",
-    background: "none",
-  },
-
-  main: { flex: 1, transition: "margin 0.3s ease", minWidth: 0 },
-  header: {
-    height: "72px", backgroundColor: "#fff", display: "flex", alignItems: "center",
-    justifyContent: "space-between", padding: "0 28px",
-    position: "sticky", top: 0, zIndex: 90,
-    boxShadow: "0 1px 3px rgba(0,0,0,0.04)", borderBottom: "1px solid #f0f0f0",
-  },
-  menuBtn: { border: "none", backgroundColor: "transparent", cursor: "pointer", color: "#4b5563", display: "flex" },
-  greet: { fontSize: "12px", color: "#9ca3af", fontWeight: "500" },
-  greetName: { fontSize: "16px", fontWeight: "700", color: "#111827" },
-
-  notifBtn: {
-    background: "none", border: "none", cursor: "pointer",
-    position: "relative", padding: "6px", display: "flex", alignItems: "center",
-    borderRadius: "10px", transition: "background 0.15s",
-  },
-  badge: {
-    position: "absolute", top: "0", right: "0",
-    backgroundColor: "#dc2626", color: "#fff", fontSize: "10px", fontWeight: "700",
-    padding: "1px 5px", borderRadius: "10px", border: "2px solid #fff", minWidth: "16px", textAlign: "center",
-  },
-  headerAvatar: {
-    width: "38px", height: "38px", borderRadius: "50%",
-    background: "linear-gradient(135deg, #0d9488, #0f766e)", color: "#fff",
-    display: "flex", alignItems: "center", justifyContent: "center",
-  },
-
-  contentCard: {
-    backgroundColor: "#fff", borderRadius: "16px", padding: "28px",
-    boxShadow: "0 1px 4px rgba(0,0,0,0.04)", border: "1px solid #f0f0f0",
-    minHeight: "78vh",
-  },
 };
 
 export default DoctorDashboard;

@@ -85,14 +85,7 @@ const PatientDashboard = () => {
           <span className="pd-brand-name">Telemedicine</span>
         </div>
 
-        {/* User card */}
-        <div className="pd-user-card">
-          <div className="pd-user-avatar">{userName.charAt(0).toUpperCase()}</div>
-          <div>
-            <div className="pd-user-name">{userName}</div>
-            <div className="pd-user-role">Patient</div>
-          </div>
-        </div>
+
 
         {/* Nav */}
         <nav className="pd-nav">
@@ -119,7 +112,7 @@ const PatientDashboard = () => {
       </aside>
 
       {/* ═══ MAIN ═══ */}
-      <div className={`pd-main ${isMobile && !sidebarOpen ? 'sidebar-closed' : ''}`}>
+      <div className={`pd-main ${isMobile && !sidebarOpen ? 'sidebar-closed' : ''} ${!isMobile && !sidebarOpen ? 'collapsed' : ''}`}>
         {/* Header */}
         <header className="pd-header">
           <div className="pd-header-left">
