@@ -43,6 +43,7 @@ export const UserProvider = ({ children }) => {
     setToken(null);
     setUser(null);
     setIsLoggedIn(false);
+    sessionStorage.setItem('isIntentionalLogout', 'true');
     localStorage.clear();
   };
 

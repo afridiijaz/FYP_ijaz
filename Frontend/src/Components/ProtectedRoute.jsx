@@ -10,11 +10,19 @@ const ProtectedRoute = ({ children, allowedRole }) => {
   const hasCorrectRole = !allowedRole || (user && user.role === allowedRole);
 
   useEffect(() => {
-    if (loading) return; // wait until session is restored
+    if (loading) return;
 
+  
+    const isIntentionalLogout = sessionStorage.getItem('isIntentionalLogout') === 'true';
+    
     if (!toastShown.current) {
       if (!isLoggedIn || !user) {
-        toast.error("You must be logged in to access your dashboard");
+        // Only show toast if it's NOT an intentional logout
+        if (!isIntentionalLogout) {
+          toast.error("You must be logged in to access your dashboard");
+        } else {
+          sessionStorage.removeItem('isIntentionalLogout');
+        }
         toastShown.current = true;
       } else if (!hasCorrectRole) {
         toast.error("You are not authorized to access this dashboard");
